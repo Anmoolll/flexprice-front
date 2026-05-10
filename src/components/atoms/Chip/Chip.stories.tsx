@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, within } from '@storybook/test';
 import { CheckCircle2, AlertTriangle, XCircle, Info } from 'lucide-react';
-import Chip from './Chip';
+import StatusChip from './Chip';
 
 /**
- * `Chip` is a compact, semantic status pill used throughout Flexprice
+ * `StatusChip` is a compact, semantic status pill used throughout Flexprice
  * (e.g. invoice statuses, plan cadence, integration health). It supports
  * five semantic variants and a custom color override.
  */
-const meta: Meta<typeof Chip> = {
-	title: 'Atoms/Chip',
-	component: Chip,
+const meta: Meta<typeof StatusChip> = {
+	title: 'Atoms/StatusChip',
+	component: StatusChip,
 	tags: ['autodocs'],
 	parameters: { layout: 'centered' },
 	argTypes: {
@@ -28,7 +28,7 @@ const meta: Meta<typeof Chip> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Chip>;
+type Story = StoryObj<typeof StatusChip>;
 
 /** Baseline chip. */
 export const Default: Story = {};
@@ -38,11 +38,11 @@ export const Variants: Story = {
 	parameters: { layout: 'padded' },
 	render: () => (
 		<div className='flex flex-wrap gap-2'>
-			<Chip variant='default' label='Default' />
-			<Chip variant='success' label='Paid' icon={<CheckCircle2 size={14} />} />
-			<Chip variant='warning' label='Pending' icon={<AlertTriangle size={14} />} />
-			<Chip variant='failed' label='Overdue' icon={<XCircle size={14} />} />
-			<Chip variant='info' label='Draft' icon={<Info size={14} />} />
+			<StatusChip variant='default' label='Default' />
+			<StatusChip variant='success' label='Paid' icon={<CheckCircle2 size={14} />} />
+			<StatusChip variant='warning' label='Pending' icon={<AlertTriangle size={14} />} />
+			<StatusChip variant='failed' label='Overdue' icon={<XCircle size={14} />} />
+			<StatusChip variant='info' label='Draft' icon={<Info size={14} />} />
 		</div>
 	),
 };

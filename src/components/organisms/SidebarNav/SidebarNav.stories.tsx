@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, within } from '@storybook/test';
 import { useState } from 'react';
 import { LayoutDashboard, Users, CreditCard, Receipt, Activity, Settings, BookOpen, Wallet, Package } from 'lucide-react';
-import Chip from '@/components/atoms/Chip';
+import StatusChip from '@/components/atoms/Chip';
 import SidebarNav, { type SidebarNavSection } from './SidebarNav';
 
 const sections: SidebarNavSection[] = [
@@ -30,7 +30,7 @@ const sections: SidebarNavSection[] = [
 				id: 'invoices',
 				label: 'Invoices',
 				icon: <Receipt size={16} />,
-				trailing: <Chip variant='failed' label='3' className='!px-1.5 !text-[10px]' />,
+				trailing: <StatusChip variant='failed' label='3' className='!px-1.5 !text-[10px]' />,
 			},
 		],
 	},

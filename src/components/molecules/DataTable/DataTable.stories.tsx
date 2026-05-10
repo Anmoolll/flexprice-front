@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import type { SortingState } from '@tanstack/react-table';
 import DataTable, { type DataTableColumnDef } from './DataTable';
 import InvoiceStatusBadge, { type InvoiceStatus } from '../InvoiceStatusBadge';
-import Chip from '@/components/atoms/Chip';
+import StatusChip from '@/components/atoms/Chip';
 
 interface InvoiceRow {
 	id: string;
@@ -71,7 +71,7 @@ const columns: DataTableColumnDef<InvoiceRow>[] = [
 	{
 		accessorKey: 'issuedAt',
 		header: 'Issued',
-		cell: ({ row }) => <Chip variant='default' label={row.original.issuedAt} />,
+		cell: ({ row }) => <StatusChip variant='default' label={row.original.issuedAt} />,
 	},
 ];
 

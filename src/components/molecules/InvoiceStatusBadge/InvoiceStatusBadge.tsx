@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { CheckCircle2, Clock, AlertTriangle, XCircle, FileText, MinusCircle } from 'lucide-react';
-import Chip from '@/components/atoms/Chip';
+import StatusChip from '@/components/atoms/Chip';
 
 /** Canonical invoice status values supported by the badge. */
 export type InvoiceStatus = 'DRAFT' | 'FINALIZED' | 'PENDING' | 'PAID' | 'OVERDUE' | 'VOIDED' | 'SKIPPED' | 'FAILED';
@@ -32,14 +32,14 @@ interface InvoiceStatusBadgeProps {
 }
 
 /**
- * `InvoiceStatusBadge` renders a Chip with consistent color / label / icon
+ * `InvoiceStatusBadge` renders a StatusChip with consistent color / label / icon
  * for every supported invoice lifecycle status. Safe to use inside table
  * cells, drawers, and the invoice detail header.
  */
 const InvoiceStatusBadge: FC<InvoiceStatusBadgeProps> = ({ status, hideIcon, className }) => {
 	const normalized = status.toUpperCase() as InvoiceStatus;
 	const config = STATUS_MAP[normalized] ?? STATUS_MAP.DRAFT;
-	return <Chip variant={config.variant} icon={hideIcon ? undefined : config.icon} label={config.label} className={className} />;
+	return <StatusChip variant={config.variant} icon={hideIcon ? undefined : config.icon} label={config.label} className={className} />;
 };
 
 export default InvoiceStatusBadge;

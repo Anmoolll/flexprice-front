@@ -1,19 +1,19 @@
 import { cn } from '@/lib/utils';
 import { FC, ReactNode } from 'react';
 
-type ChipVariant = 'default' | 'success' | 'warning' | 'failed' | 'info';
+type StatusChipVariant = 'default' | 'success' | 'warning' | 'failed' | 'info';
 
-interface ChipColorScheme {
+interface StatusChipColorScheme {
 	textColor: string;
 	bgColor: string;
 	borderColor: string;
 }
 
-interface ChipProps {
+interface StatusChipProps {
 	/** The main content of the chip */
 	label?: ReactNode;
 	/** Visual style variant of the chip */
-	variant?: ChipVariant;
+	variant?: StatusChipVariant;
 	/** Custom text color (overrides variant) */
 	textColor?: string;
 	/** Custom background color (overrides variant) */
@@ -31,7 +31,7 @@ interface ChipProps {
 	borderColor?: string;
 }
 
-const CHIP_COLORS: Record<ChipVariant, ChipColorScheme> = {
+const CHIP_COLORS: Record<StatusChipVariant, StatusChipColorScheme> = {
 	success: { bgColor: '#ECFBE4', textColor: '#377E6A', borderColor: '#d1e9ca' },
 	default: { bgColor: '#F0F2F5', textColor: '#57646E', borderColor: '#F0F2F5' },
 	failed: { bgColor: '#FEE2E2', textColor: '#DC2626', borderColor: '#FEE2E2' },
@@ -39,7 +39,7 @@ const CHIP_COLORS: Record<ChipVariant, ChipColorScheme> = {
 	warning: { bgColor: '#FFF7ED', textColor: '#C2410C', borderColor: '#FFF7ED' },
 };
 
-const Chip: FC<ChipProps> = ({
+const StatusChip: FC<StatusChipProps> = ({
 	label,
 	variant = 'default',
 	textColor,
@@ -84,4 +84,7 @@ const Chip: FC<ChipProps> = ({
 	);
 };
 
-export default Chip;
+// Backward compatible named exports for existing imports in app code.
+export { StatusChip, StatusChip as Badge, StatusChip as Chip };
+export type { StatusChipProps, StatusChipVariant };
+export default StatusChip;
