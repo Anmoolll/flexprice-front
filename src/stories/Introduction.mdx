@@ -1,0 +1,77 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title='Introduction' />
+
+# Flexprice Component Library
+
+A focused, production-quality component library extracted from and inspired
+by the Flexprice billing platform. Existing components are documented here in
+isolation; new primitives (DataTable, InvoiceStatusBadge, UsageBar, SearchBar,
+EmptyState, PricingTierTable, SidebarNav) were added where the assignment
+required them, in line with the existing architecture and tokens.
+
+## Assignment intent
+
+This Storybook is designed to act as a mini internal design system:
+
+- composable components with strict TypeScript APIs
+- reusable styling patterns (`cn`, Tailwind tokens, `cva` where relevant)
+- accessibility-aware interactions (keyboard + ARIA semantics)
+- realistic stories for happy paths and edge states
+- interaction tests for user-critical behaviors
+
+## Stack
+
+- **React 18 + TypeScript (strict)**
+- **Tailwind CSS** with shadcn `new-york` design tokens
+- **Radix UI** primitives for accessibility
+- **class-variance-authority** for variant ergonomics
+- **TanStack Table v8 + TanStack Virtual** for the DataTable
+- **Zustand v5** for the filter store
+- **TanStack Query v5** for the query config presets
+- **Vitest + Testing Library** for unit tests
+- **Storybook 8** with autodocs and play-function interaction tests
+
+## Atomic structure
+
+- **Atoms** (`src/components/atoms/*`): Button, Chip, Input, Select, Tooltip, Spinner
+- **Molecules** (`src/components/molecules/*`): MetricCard, InvoiceStatusBadge, UsageBar, SearchBar, **DataTable**
+- **Organisms** (`src/components/organisms/*`): EmptyState, PricingTierTable, SidebarNav
+
+## Conventions
+
+- **Styling**: Tailwind utility classes only. No inline styles except for
+  variant-driven `style` (e.g., the dynamic chip color tokens).
+- **Class merging**: Use `cn()` from `@/lib/utils` (clsx + tailwind-merge).
+- **Variants**: Authored with `cva()` for type-safe variant + size unions.
+- **A11y**: Every interactive component supports keyboard navigation,
+  has correct ARIA semantics, and respects focus rings.
+- **Types**: No `any`. Props are explicit, with JSDoc on public APIs.
+
+## What to review first
+
+- **Molecules / DataTable**: generic `<T,>` API, sorting, loading/empty states,
+  and virtualized rendering with a 10,000-row performance story.
+- **Store / useFilterStore**: session-persisted route-scoped filters with URL
+  fingerprint sync for lightweight shareability.
+- **Lib / createQueryConfig**: query-client presets (`REALTIME`, `DEFAULT`,
+  `STATIC`) aligned with TanStack Query v5 behavior.
+
+## Highlights to look at
+
+- **Molecules / DataTable** — the marquee piece. Generic `<T,>` columns API,
+  TanStack Table sorting, skeleton loading, empty state, and a 10,000-row
+  story demonstrating windowed virtualization.
+- **Hooks / useFilterStore** — Zustand store persisted to `sessionStorage`,
+  keyed by route, with a lightweight URL fingerprint for shareable links.
+- **Utilities / createQueryConfig** — TanStack Query v5 preset factory
+  exposing `REALTIME`, `DEFAULT`, and `STATIC` policies.
+
+## Quick validation commands
+
+- `npm run storybook` to inspect components in development mode
+- `npm run build-storybook` to generate a static publishable Storybook
+- `npx vitest run src/components src/lib src/store` for focused regression checks
+
+Use the **sidebar** to navigate. The **Controls**, **Actions**, and
+**Interactions** tabs are wired up across all interactive stories.

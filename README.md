@@ -98,6 +98,50 @@ With this architecture, you get full control over how billing works inside your 
 - 🏗️ **Self-Hostable** - Open source with full control over your infrastructure
 - 📈 **Real-time Analytics** - Comprehensive usage and billing insights
 
+## 🎯 Frontend Intern Assignment (Storybook Component Library)
+
+This repository now includes a polished Storybook-first component-library pass
+for the intern take-home assignment, built on the existing Flexprice frontend
+architecture without rewriting core app flows.
+
+### What was delivered
+
+- **Atomic component showcase** in Storybook (`Atoms`, `Molecules`, `Organisms`)
+- **Marquee `DataTable`** with TanStack Table + TanStack Virtual:
+  sorting, loading/empty/skeleton states, overscan + row estimation, and a
+  10,000-row virtualization story
+- **Advanced frontend utilities**:
+  - `useFilterStore` (Zustand + `sessionStorage` persistence, route-scoped keys, URL fingerprint sync)
+  - `createQueryConfig` presets for TanStack Query v5 (`REALTIME`, `DEFAULT`, `STATIC`)
+- **Storybook docs and interactions**:
+  controls, autodocs tags, realistic stories, and `play` interaction tests on
+  key interactive components
+- **Meaningful test coverage** across atoms, molecules, and organisms
+
+### Key files to review
+
+- Storybook setup: `.storybook/main.ts`, `.storybook/preview.tsx`
+- Storybook introduction: `src/stories/Introduction.mdx`
+- DataTable: `src/components/molecules/DataTable/`
+- Filter store: `src/store/useFilterStore.ts`
+- Query config utility: `src/lib/queryConfig.ts`
+
+### Local validation commands
+
+```bash
+# Storybook (dev)
+npm run storybook
+
+# Static Storybook build
+npm run build-storybook
+
+# If memory-constrained on Windows PowerShell:
+$env:NODE_OPTIONS="--max-old-space-size=6144"; npm run build-storybook
+
+# Focused tests for assignment deliverables
+npx vitest run src/components src/store src/lib
+```
+
 ## 🚀 Quick Setup (One-Click Development)
 
 [![Latest Release](https://img.shields.io/github/v/release/flexprice/flexprice-front?style=flat-square&label=Current%20Version)](https://github.com/flexprice/flexprice-front/releases)
